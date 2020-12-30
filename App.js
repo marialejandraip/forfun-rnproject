@@ -1,6 +1,6 @@
 //import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 
 export default function App() {
   const [people, setPeople]= useState([
@@ -15,16 +15,25 @@ export default function App() {
     {name:'Osquitar', key:9,},
   ]);
 
+  //Other way using Flat, when is a large array of items is better use it. It can be better for performance.
+  //it dont automatically load onto the screen all data, only in the first view and then more will load as the scrolldown 
+  //ScrollView will be better when is a more less data and will render all the items from the begining.
+
   return (
     <View style={styles.container}>
-      
-      <ScrollView>
+      <FlatList 
+      data={people}
+      renderItem={({person})=>(
+        <Text style={styles.item}>{person.name}</Text>
+      )}/>
+  
+    {/*   <ScrollView>
       { people.map(person => (
-          <View key={person.key} style={styles.item}>
-            <Text >{person.name}</Text>
+          <View key={person.key} >
+            <Text style={styles.item} >{person.name}</Text>
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
