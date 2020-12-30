@@ -1,23 +1,33 @@
 //import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
   const [name, setName]= useState('Maria');
-  const [person, setPerson] =useState({name:'Fernando', age:26});
+  const [age, setAge] =useState(26)
 
   const handlePress = () => {
     setName('Alejita')
-    setPerson({name:'Johan', age:27})
+    setAge(26)
   }
   return (
     //View is like a div, Text component always when want to see text
     <View style={styles.container}>
-       <Text>My name is {name}</Text>
-        <Text>His name is {person.name} and his age is {person.age}</Text>
-        <View style={styles.buttonContainer}>
-          <Button title="update state" onPress={handlePress}/>
-        </View>
+      <Text>Enter your name:</Text>
+      <TextInput 
+      multiline //when press enter start new line
+      style={styles.input} 
+      placeholder='Mariita' 
+      onChangeText={(e)=> setName(e)}
+      />
+       <Text>Enter your age:</Text>
+      <TextInput 
+      keyboardType='number-pad' //property to change the type keyboard
+      style={styles.input} 
+      placeholder= '45' 
+      onChangeText={(e)=> setAge(e)}
+      />
+      <Text>your name is {name} and age is {age}</Text>
     </View>
   );
 }
@@ -31,5 +41,13 @@ const styles = StyleSheet.create({
   }, 
   buttonContainer:{
   marginTop:20, 
+  }, 
+  input:{
+    borderWidth:1,
+    borderRadius: 10,
+    borderColor:'#777',
+    padding:8,
+    margin: 10,
+    width:200,
   }
 });
