@@ -1,26 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName]= useState('Maria');
+  const [person, setPerson] =useState({name:'Fernando', age:26});
+
+  const handlePress = () => {
+    setName('Alejita')
+    setPerson({name:'Johan', age:27})
+  }
   return (
-    //View is like a div, Text component always when i want to see text
+    //View is like a div, Text component always when want to see text
     <View style={styles.container}>
-      <View style ={styles.header}>
-        <Text style ={styles.boldText}>Hello World! </Text>
-      </View>
-      <View style ={styles.body}>
-        <Text style ={styles.boldText} >Lorem imsum <Text>Holi</Text>salut</Text>
-        <Text>Lorem imsum salut</Text>
-        <Text>Lorem imsum salut</Text>
-      </View>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+       <Text>My name is {name}</Text>
+        <Text>His name is {person.name} and his age is {person.age}</Text>
+        <View style={styles.buttonContainer}>
+          <Button title="update state" onPress={handlePress}/>
+        </View>
     </View>
   );
 }
-
-//React native emulate css because android and IOS dont use it
 
 const styles = StyleSheet.create({
   container: {
@@ -28,16 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  header:{
-    backgroundColor: 'pink',
-    padding:20,
-  },
-  boldText:{
-    fontWeight:'bold',
-  },
-  body:{
-    backgroundColor:'yellow',
-    padding:20,
+  }, 
+  buttonContainer:{
+  marginTop:20, 
   }
 });
