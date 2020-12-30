@@ -1,33 +1,30 @@
 //import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 
 export default function App() {
-  const [name, setName]= useState('Maria');
-  const [age, setAge] =useState(26)
+  const [people, setPeople]= useState([
+    {name:'Alejita', key:1,},
+    {name:'Anita', key:2,},
+    {name:'Fernando', key:3,},
+    {name:'Johan', key:4,},
+    {name:'Cata', key:5,},
+    {name:'Rozito', key:6,},
+    {name:'Aleja', key:7,},
+    {name:'Cami', key:8,},
+    {name:'Osquitar', key:9,},
+  ]);
 
-  const handlePress = () => {
-    setName('Alejita')
-    setAge(26)
-  }
   return (
-    //View is like a div, Text component always when want to see text
     <View style={styles.container}>
-      <Text>Enter your name:</Text>
-      <TextInput 
-      multiline //when press enter start new line
-      style={styles.input} 
-      placeholder='Mariita' 
-      onChangeText={(e)=> setName(e)}
-      />
-       <Text>Enter your age:</Text>
-      <TextInput 
-      keyboardType='number-pad' //property to change the type keyboard
-      style={styles.input} 
-      placeholder= '45' 
-      onChangeText={(e)=> setAge(e)}
-      />
-      <Text>your name is {name} and age is {age}</Text>
+      
+      <ScrollView>
+      { people.map(person => (
+          <View key={person.key} style={styles.item}>
+            <Text >{person.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -39,15 +36,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   }, 
-  buttonContainer:{
-  marginTop:20, 
-  }, 
-  input:{
-    borderWidth:1,
-    borderRadius: 10,
-    borderColor:'#777',
-    padding:8,
-    margin: 10,
-    width:200,
+  item:{
+    marginTop:24,
+    padding:30,
+    fontSize:24,
+    backgroundColor:'pink',
+    width:300
   }
 });
